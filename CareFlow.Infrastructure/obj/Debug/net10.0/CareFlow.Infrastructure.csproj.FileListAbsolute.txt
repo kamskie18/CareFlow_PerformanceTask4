@@ -17,3 +17,4 @@ C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareF
 C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Infrastructure\obj\Debug\net10.0\CareFlow.Infrastructure.pdb
 C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Infrastructure\obj\Debug\net10.0\CareFlow.Infrastructure.genruntimeconfig.cache
 C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Infrastructure\obj\Debug\net10.0\ref\CareFlow.Infrastructure.dll
+C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Infrastructure\obj\Debug\net10.0\CareFlow.Infrastructure.sourcelink.json

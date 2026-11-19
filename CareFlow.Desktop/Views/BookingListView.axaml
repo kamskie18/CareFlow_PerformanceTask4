@@ -5,67 +5,108 @@
              x:Class="CareFlow.Desktop.Views.BookingListView"
              x:DataType="vm:BookingListViewModel">
 
-    <DockPanel Margin="16">
+    <Grid RowDefinitions="Auto,*" Margin="0">
 
-        <Button DockPanel.Dock="Top"
-                Content="Refresh Bookings"
-                Command="{Binding LoadBookingsCommand}"
-                HorizontalAlignment="Left"
-                Margin="0,0,0,12"/>
+        <!-- Top Header & Refresh -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,16">
+            <StackPanel Grid.Column="0" Spacing="4">
+                <TextBlock Text="Confirmed Diagnostic Bookings" FontSize="20" FontWeight="Bold" Foreground="#2D3748"/>
+                <TextBlock Text="Retrieve and inspect persisted patient bookings and allocated services." FontSize="12" Foreground="#718096"/>
+            </StackPanel>
 
-        <Grid ColumnDefinitions="*,*">
+            <Button Grid.Column="1"
+                    Content="Refresh Bookings"
+                    Command="{Binding LoadBookingsCommand}"
+                    Background="#3182CE"
+                    Foreground="White"
+                    FontWeight="SemiBold"
+                    Padding="14,6"
+                    CornerRadius="4"
+                    VerticalAlignment="Center"/>
+        </Grid>
 
-            <!-- Booking List -->
-            <DockPanel Grid.Column="0" Margin="0,0,8,0">
-                <Grid DockPanel.Dock="Top" ColumnDefinitions="50,*,110" Margin="4,0,4,4">
-                    <TextBlock Grid.Column="0" Text="ID" FontWeight="Bold"/>
-                    <TextBlock Grid.Column="1" Text="Patient" FontWeight="Bold"/>
-                    <TextBlock Grid.Column="2" Text="Date" FontWeight="Bold"/>
-                </Grid>
-                <Separator DockPanel.Dock="Top" Margin="0,0,0,4"/>
-                <ListBox ItemsSource="{Binding Bookings}"
-                         SelectedItem="{Binding SelectedBooking}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate x:DataType="dto:BookingSummaryDto">
-                            <Grid ColumnDefinitions="50,*,110">
-                                <TextBlock Grid.Column="0" Text="{Binding BookingId}"/>
-                                <TextBlock Grid.Column="1" Text="{Binding PatientName}"/>
-                                <TextBlock Grid.Column="2" Text="{Binding BookingDate}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </DockPanel>
+        <!-- 2-Column Split: Booking List + Booking Details -->
+        <Grid Grid.Row="1" ColumnDefinitions="1.3*,1*">
 
-            <!-- Booking Detail -->
-            <Border Grid.Column="1"
-                    BorderBrush="Gray" BorderThickness="1"
-                    CornerRadius="4" Padding="12"
-                    Margin="8,0,0,0">
-                <StackPanel Spacing="8"
-                            IsVisible="{Binding SelectedBooking, Converter={x:Static ObjectConverters.IsNotNull}}"
-                            x:CompileBindings="False">
-                    <TextBlock Text="Booking Details" FontWeight="Bold" FontSize="16"/>
-                    <TextBlock>
-                        <Run Text="Booking #"/><Run Text="{Binding SelectedBooking.BookingId}"/>
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Patient: "/><Run Text="{Binding SelectedBooking.PatientName}"/>
-                    </TextBlock>
-                    <TextBlock>
-                        <Run Text="Date: "/><Run Text="{Binding SelectedBooking.BookingDate}"/>
-                    </TextBlock>
-                    <TextBlock Text="Services:" FontWeight="SemiBold" Margin="0,8,0,0"/>
-                    <ItemsControl ItemsSource="{Binding SelectedBooking.Services}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding}" Margin="8,2"/>
+            <!-- Left: Bookings Table -->
+            <Border Grid.Column="0" Background="#F7FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,0,12,0">
+                <DockPanel LastChildFill="True">
+                    <Grid DockPanel.Dock="Top" ColumnDefinitions="60,*,120" Margin="8,4,8,8">
+                        <TextBlock Grid.Column="0" Text="ID" FontWeight="Bold" Foreground="#4A5568" FontSize="12"/>
+                        <TextBlock Grid.Column="1" Text="Patient Name" FontWeight="Bold" Foreground="#4A5568" FontSize="12"/>
+                        <TextBlock Grid.Column="2" Text="Booking Date" FontWeight="Bold" Foreground="#4A5568" FontSize="12"/>
+                    </Grid>
+                    <Separator DockPanel.Dock="Top" Margin="0,0,0,6"/>
+                    <ListBox ItemsSource="{Binding Bookings}"
+                             SelectedItem="{Binding SelectedBooking}"
+                             Background="Transparent">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="dto:BookingSummaryDto">
+                                <Border Padding="8,8" Margin="0,2" BorderBrush="#EDF2F7" BorderThickness="0,0,0,1">
+                                    <Grid ColumnDefinitions="60,*,120">
+                                        <Border Grid.Column="0" Background="#4A5568" CornerRadius="4" Padding="6,2" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding BookingId, StringFormat='#{0}'}" Foreground="White" FontSize="11" FontWeight="Bold"/>
+                                        </Border>
+                                        <TextBlock Grid.Column="1" Text="{Binding PatientName}" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="#2D3748"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding BookingDate, StringFormat='{}{0:yyyy-MM-dd}'}" VerticalAlignment="Center" Foreground="#718096" FontSize="12"/>
+                                    </Grid>
+                                </Border>
                             </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </Border>
+
+            <!-- Right: Details Card -->
+            <Border Grid.Column="1" Background="#F7FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="8" Padding="16">
+                <StackPanel Spacing="14">
+                    <TextBlock Text="Booking Specification" FontWeight="Bold" FontSize="15" Foreground="#2B6CB0"/>
+                    <Border Background="#2D3748" Height="1" Opacity="0.1"/>
+
+                    <StackPanel Spacing="10"
+                                IsVisible="{Binding SelectedBooking, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                x:CompileBindings="False">
+
+                        <Border Background="White" CornerRadius="6" Padding="12" BorderBrush="#E2E8F0" BorderThickness="1">
+                            <StackPanel Spacing="6">
+                                <TextBlock Text="Patient" FontSize="11" Foreground="#718096" FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding SelectedBooking.PatientName}" FontSize="14" FontWeight="Bold" Foreground="#2D3748"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="White" CornerRadius="6" Padding="12" BorderBrush="#E2E8F0" BorderThickness="1">
+                            <StackPanel Spacing="6">
+                                <TextBlock Text="Scheduled Date" FontSize="11" Foreground="#718096" FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding SelectedBooking.BookingDate, StringFormat='{}{0:MMMM dd, yyyy}'}" FontSize="13" FontWeight="SemiBold" Foreground="#2D3748"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Background="White" CornerRadius="6" Padding="12" BorderBrush="#E2E8F0" BorderThickness="1">
+                            <StackPanel Spacing="6">
+                                <TextBlock Text="Diagnostic Services Allocated" FontSize="11" Foreground="#718096" FontWeight="SemiBold"/>
+                                <ItemsControl ItemsSource="{Binding SelectedBooking.Services}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Background="#EDF2F7" CornerRadius="4" Padding="8,4" Margin="0,3">
+                                                <TextBlock Text="{Binding}" FontSize="12" Foreground="#2D3748" FontWeight="SemiBold"/>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+
+                    </StackPanel>
+
+                    <TextBlock Text="Select a confirmed booking from the list on the left to inspect its details."
+                               IsVisible="{Binding SelectedBooking, Converter={x:Static ObjectConverters.IsNull}}"
+                               Foreground="#A0AEC0"
+                               FontSize="12"
+                               TextWrapping="Wrap"/>
                 </StackPanel>
             </Border>
 
         </Grid>
-    </DockPanel>
+
+    </Grid>
 </UserControl>

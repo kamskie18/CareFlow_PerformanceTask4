@@ -4,34 +4,81 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="using:CareFlow.Application.ViewModels"
         xmlns:views="using:CareFlow.Desktop.Views"
-        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="650"
+        mc:Ignorable="d" d:DesignWidth="1050" d:DesignHeight="700"
         x:Class="CareFlow.Desktop.MainWindow"
         x:DataType="vm:MainViewModel"
         Title="CareFlow - Diagnostic Booking Management"
-        Width="900" Height="650">
+        Width="1050" Height="700"
+        WindowStartupLocation="CenterScreen"
+        Background="#F7FAFC">
 
-    <DockPanel>
-        <!-- Header -->
-        <Border DockPanel.Dock="Top" Background="#0078D4" Padding="16,10">
-            <TextBlock Text="CareFlow — Diagnostic Booking Management"
-                       Foreground="White" FontSize="18" FontWeight="Bold"/>
+    <Grid ColumnDefinitions="240,*">
+
+        <!-- Sidebar Navigation -->
+        <Border Grid.Column="0" Background="#1A202C">
+            <DockPanel LastChildFill="True">
+
+                <!-- Header -->
+                <StackPanel DockPanel.Dock="Top" Margin="20,24,20,16" Spacing="6">
+                    <TextBlock Text="CareFlow" FontSize="22" FontWeight="Bold" Foreground="White" LetterSpacing="0.5"/>
+                    <TextBlock Text="Diagnostic Department" FontSize="12" Foreground="#A0AEC0"/>
+                    <Border Background="#2D3748" Height="1" Margin="0,14,0,0"/>
+                </StackPanel>
+
+                <!-- Footer / Status Info -->
+                <StackPanel DockPanel.Dock="Bottom" Margin="20" Spacing="4">
+                    <Border Background="#2D3748" Height="1" Margin="0,0,0,12"/>
+                    <TextBlock Text="PostgreSQL Connected" FontSize="11" Foreground="#48BB78" FontWeight="SemiBold"/>
+                    <TextBlock Text="ITSD81 - Performance Task 4" FontSize="10" Foreground="#718096"/>
+                </StackPanel>
+
+                <!-- Navigation Buttons -->
+                <StackPanel Spacing="8" Margin="14,12">
+                    <Button Content="Service Availability"
+                            Command="{Binding SelectTabCommand}"
+                            CommandParameter="0"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
+                            Padding="14,10"
+                            CornerRadius="6"
+                            Background="#2D3748"
+                            Foreground="#E2E8F0"
+                            FontWeight="SemiBold"/>
+
+                    <Button Content="Create Booking"
+                            Command="{Binding SelectTabCommand}"
+                            CommandParameter="1"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
+                            Padding="14,10"
+                            CornerRadius="6"
+                            Background="#2D3748"
+                            Foreground="#E2E8F0"
+                            FontWeight="SemiBold"/>
+
+                    <Button Content="Confirmed Bookings"
+                            Command="{Binding SelectTabCommand}"
+                            CommandParameter="2"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
+                            Padding="14,10"
+                            CornerRadius="6"
+                            Background="#2D3748"
+                            Foreground="#E2E8F0"
+                            FontWeight="SemiBold"/>
+                </StackPanel>
+
+            </DockPanel>
         </Border>
 
-        <!-- Tab Control -->
-        <TabControl SelectedIndex="{Binding SelectedTabIndex}" Margin="8">
+        <!-- Main Body Area -->
+        <Border Grid.Column="1" Padding="24" Background="#FFFFFF">
+            <Carousel SelectedIndex="{Binding SelectedTabIndex}">
+                <views:AvailabilityView DataContext="{Binding Availability}"/>
+                <views:CreateBookingView DataContext="{Binding CreateBooking}"/>
+                <views:BookingListView DataContext="{Binding BookingList}"/>
+            </Carousel>
+        </Border>
 
-            <TabItem Header="Service Availability">
-                <views:AvailabilityView DataContext="{Binding Availability}" />
-            </TabItem>
-
-            <TabItem Header="Create Booking">
-                <views:CreateBookingView DataContext="{Binding CreateBooking}" />
-            </TabItem>
-
-            <TabItem Header="View Bookings">
-                <views:BookingListView DataContext="{Binding BookingList}" />
-            </TabItem>
-
-        </TabControl>
-    </DockPanel>
+    </Grid>
 </Window>

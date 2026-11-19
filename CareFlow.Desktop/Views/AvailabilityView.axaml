@@ -5,39 +5,62 @@
              x:Class="CareFlow.Desktop.Views.AvailabilityView"
              x:DataType="vm:AvailabilityViewModel">
 
-    <DockPanel Margin="16">
+    <Grid RowDefinitions="Auto,Auto,*" Margin="0">
 
-        <!-- Date Picker -->
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="12" Margin="0,0,0,12">
-            <TextBlock Text="Select Date:" VerticalAlignment="Center" FontWeight="SemiBold"/>
-            <DatePicker SelectedDate="{Binding SelectedDate}" MinWidth="200"/>
-            <Button Content="Refresh" Command="{Binding LoadAvailabilityCommand}"/>
-        </StackPanel>
+        <!-- Top Header & Actions -->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,16">
+            <StackPanel Grid.Column="0" Spacing="4">
+                <TextBlock Text="Diagnostic Service Availability" FontSize="20" FontWeight="Bold" Foreground="#2D3748"/>
+                <TextBlock Text="Real-time capacity and remaining slots calculated from database records." FontSize="12" Foreground="#718096"/>
+            </StackPanel>
 
-        <!-- Header Row -->
-        <Grid DockPanel.Dock="Top" ColumnDefinitions="*,120,100,100" Margin="0,0,0,4">
-            <TextBlock Grid.Column="0" Text="Service Name" FontWeight="Bold"/>
-            <TextBlock Grid.Column="1" Text="Daily Capacity" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="2" Text="Booked" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Column="3" Text="Remaining" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                <TextBlock Text="Target Date:" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="#4A5568"/>
+                <DatePicker SelectedDate="{Binding SelectedDate}" MinWidth="180"/>
+                <Button Content="Refresh"
+                        Command="{Binding LoadAvailabilityCommand}"
+                        Background="#3182CE"
+                        Foreground="White"
+                        FontWeight="SemiBold"
+                        Padding="14,6"
+                        CornerRadius="4"/>
+            </StackPanel>
         </Grid>
 
-        <Separator DockPanel.Dock="Top" Margin="0,0,0,4"/>
+        <!-- Table Header Card -->
+        <Border Grid.Row="1" Background="#EDF2F7" Padding="14,10" CornerRadius="6,6,0,0" BorderBrush="#E2E8F0" BorderThickness="1,1,1,0">
+            <Grid ColumnDefinitions="*,130,120,120">
+                <TextBlock Grid.Column="0" Text="Diagnostic Service" FontWeight="Bold" Foreground="#4A5568" FontSize="12"/>
+                <TextBlock Grid.Column="1" Text="Daily Capacity" FontWeight="Bold" Foreground="#4A5568" FontSize="12" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="Booked Slots" FontWeight="Bold" Foreground="#4A5568" FontSize="12" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="3" Text="Remaining Capacity" FontWeight="Bold" Foreground="#4A5568" FontSize="12" HorizontalAlignment="Center"/>
+            </Grid>
+        </Border>
 
-        <!-- Rows -->
-        <ListBox ItemsSource="{Binding Services}" Background="Transparent">
-            <ListBox.ItemTemplate>
-                <DataTemplate x:DataType="dto:ServiceAvailabilityDto">
-                    <Grid ColumnDefinitions="*,120,100,100" Margin="0,2">
-                        <TextBlock Grid.Column="0" Text="{Binding ServiceName}"/>
-                        <TextBlock Grid.Column="1" Text="{Binding DailyCapacity}" HorizontalAlignment="Center"/>
-                        <TextBlock Grid.Column="2" Text="{Binding BookedCount}" HorizontalAlignment="Center"/>
-                        <TextBlock Grid.Column="3" Text="{Binding Remaining}" HorizontalAlignment="Center"
-                                   FontWeight="SemiBold"/>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <!-- Service Rows -->
+        <Border Grid.Row="2" Background="#FAFAFA" BorderBrush="#E2E8F0" BorderThickness="1,0,1,1" CornerRadius="0,0,6,6">
+            <ListBox ItemsSource="{Binding Services}" Background="Transparent">
+                <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="dto:ServiceAvailabilityDto">
+                        <Border Padding="12,10" BorderBrush="#EDF2F7" BorderThickness="0,0,0,1">
+                            <Grid ColumnDefinitions="*,130,120,120">
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center" Spacing="2">
+                                    <TextBlock Text="{Binding ServiceName}" FontWeight="SemiBold" FontSize="13" Foreground="#2D3748"/>
+                                    <TextBlock Text="{Binding DailyCapacity, StringFormat='Max: {0} requests/day'}" FontSize="11" Foreground="#A0AEC0"/>
+                                </StackPanel>
+                                <TextBlock Grid.Column="1" Text="{Binding DailyCapacity}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#4A5568"/>
+                                <TextBlock Grid.Column="2" Text="{Binding BookedCount}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#718096" FontWeight="SemiBold"/>
+                                <Border Grid.Column="3" Background="#EBF8FF" CornerRadius="4" Padding="8,4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Remaining}"
+                                               FontWeight="Bold"
+                                               Foreground="#2B6CB0"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
 
-    </DockPanel>
+    </Grid>
 </UserControl>

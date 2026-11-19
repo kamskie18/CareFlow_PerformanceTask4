@@ -4,57 +4,82 @@
              x:Class="CareFlow.Desktop.Views.CreateBookingView"
              x:DataType="vm:CreateBookingViewModel">
 
-    <ScrollViewer>
-        <StackPanel Margin="16" Spacing="16">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="16" Margin="0,0,16,0">
 
-            <!-- Patient Selection -->
-            <TextBlock Text="Patient" FontWeight="SemiBold" FontSize="14"/>
-            <ComboBox ItemsSource="{Binding Patients}"
-                      SelectedItem="{Binding SelectedPatient}"
-                      PlaceholderText="Select a patient..."
-                      MinWidth="300">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding FullName}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <!-- Title Header -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="New Diagnostic Booking" FontSize="20" FontWeight="Bold" Foreground="#2D3748"/>
+                <TextBlock Text="Select a patient, booking date, and 1 to 3 diagnostic services." FontSize="12" Foreground="#718096"/>
+            </StackPanel>
 
-            <!-- Date Selection -->
-            <TextBlock Text="Booking Date" FontWeight="SemiBold" FontSize="14"/>
-            <DatePicker SelectedDate="{Binding SelectedDate}" MinWidth="300"/>
+            <!-- Main Form Card -->
+            <Border Background="#F7FAFC" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="8" Padding="20">
+                <StackPanel Spacing="16">
 
-            <!-- Service Selection -->
-            <TextBlock Text="Diagnostic Services (select 1 to 3)" FontWeight="SemiBold" FontSize="14"/>
-            <ItemsControl ItemsSource="{Binding SelectableServices}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <CheckBox IsChecked="{Binding IsSelected}"
-                                  Content="{Binding DisplayText}"
-                                  Margin="0,4"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                    <!-- Patient Picker -->
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Patient" FontWeight="SemiBold" FontSize="13" Foreground="#4A5568"/>
+                        <ComboBox ItemsSource="{Binding Patients}"
+                                  SelectedItem="{Binding SelectedPatient}"
+                                  PlaceholderText="-- Select a Registered Patient --"
+                                  HorizontalAlignment="Stretch">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding FullName}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
 
-            <!-- Submit -->
-            <Button Content="Confirm Booking"
-                    Command="{Binding SubmitBookingCommand}"
-                    HorizontalAlignment="Left"
-                    Padding="24,8"
-                    FontWeight="SemiBold"/>
+                    <!-- Date Selection -->
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Booking Date (Must be today or future)" FontWeight="SemiBold" FontSize="13" Foreground="#4A5568"/>
+                        <DatePicker SelectedDate="{Binding SelectedDate}" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
 
-            <!-- Status Message -->
-            <Border IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                    Padding="12"
-                    CornerRadius="4"
-                    BorderThickness="1">
-                <Border.Styles>
-                    <Style Selector="Border">
-                        <Setter Property="Background" Value="#FFF3CD"/>
-                        <Setter Property="BorderBrush" Value="#FFC107"/>
-                    </Style>
-                </Border.Styles>
-                <TextBlock Text="{Binding StatusMessage}" TextWrapping="Wrap"/>
+                    <!-- Service Selection Checklist -->
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Diagnostic Services (Select 1 to 3)" FontWeight="SemiBold" FontSize="13" Foreground="#4A5568"/>
+                        <Border Background="White" BorderBrush="#E2E8F0" BorderThickness="1" CornerRadius="6" Padding="12">
+                            <ItemsControl ItemsSource="{Binding SelectableServices}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Padding="4,6" Margin="0,2">
+                                            <CheckBox IsChecked="{Binding IsSelected}"
+                                                      Content="{Binding DisplayText}"
+                                                      FontSize="13"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Submit Button -->
+                    <Button Content="Confirm Booking"
+                            Command="{Binding SubmitBookingCommand}"
+                            Background="#3182CE"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            FontSize="13"
+                            Padding="24,10"
+                            CornerRadius="6"
+                            HorizontalAlignment="Left"/>
+
+                    <!-- Status / Validation Feedback Banner -->
+                    <Border IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                            Background="{Binding IsSuccess, Converter={x:Null}}"
+                            BorderBrush="#CBD5E0"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Padding="14,10">
+                        <TextBlock Text="{Binding StatusMessage}"
+                                   FontWeight="SemiBold"
+                                   TextWrapping="Wrap"/>
+                    </Border>
+
+                </StackPanel>
             </Border>
 
         </StackPanel>

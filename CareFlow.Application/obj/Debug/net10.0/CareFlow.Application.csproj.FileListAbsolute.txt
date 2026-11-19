@@ -13,3 +13,4 @@ C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareF
 C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Application\obj\Debug\net10.0\refint\CareFlow.Application.dll
 C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Application\obj\Debug\net10.0\CareFlow.Application.pdb
 C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Application\obj\Debug\net10.0\ref\CareFlow.Application.dll
+C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Application\obj\Debug\net10.0\CareFlow.Application.sourcelink.json

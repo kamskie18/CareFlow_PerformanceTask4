@@ -65,7 +65,14 @@ public class CareFlowDbContext : DbContext
             new Patient { Id = 2, FirstName = "Juan", LastName = "Dela Cruz", DateOfBirth = new DateOnly(1985, 7, 22) },
             new Patient { Id = 3, FirstName = "Ana", LastName = "Reyes", DateOfBirth = new DateOnly(2000, 1, 10) },
             new Patient { Id = 4, FirstName = "Carlos", LastName = "Garcia", DateOfBirth = new DateOnly(1978, 11, 5) },
-            new Patient { Id = 5, FirstName = "Elena", LastName = "Mendoza", DateOfBirth = new DateOnly(1995, 6, 28) }
+            new Patient { Id = 5, FirstName = "Elena", LastName = "Mendoza", DateOfBirth = new DateOnly(1995, 6, 28) },
+            new Patient { Id = 6, FirstName = "Stephen", LastName = "Curry", DateOfBirth = new DateOnly(1988, 3, 14) },
+            new Patient { Id = 7, FirstName = "Rubin", LastName = "Castro", DateOfBirth = new DateOnly(1992, 8, 20) },
+            new Patient { Id = 8, FirstName = "Lance", LastName = "Balubar", DateOfBirth = new DateOnly(2001, 5, 11) },
+            new Patient { Id = 9, FirstName = "Scudge", LastName = "Gil", DateOfBirth = new DateOnly(1999, 11, 23) },
+            new Patient { Id = 10, FirstName = "Juan", LastName = "Pablo", DateOfBirth = new DateOnly(1994, 4, 18) },
+            new Patient { Id = 11, FirstName = "Juan", LastName = "Tamad", DateOfBirth = new DateOnly(1996, 9, 2) },
+            new Patient { Id = 12, FirstName = "Sarah", LastName = "David", DateOfBirth = new DateOnly(1998, 12, 15) }
         );
 
         modelBuilder.Entity<DiagnosticService>().HasData(
