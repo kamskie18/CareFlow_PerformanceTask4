@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "CareFlow.Domain/1.0.0": {
+        "runtime": {
+          "CareFlow.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CareFlow.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

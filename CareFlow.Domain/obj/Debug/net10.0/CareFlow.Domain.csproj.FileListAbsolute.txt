@@ -1,0 +1,11 @@
+C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Domain\bin\Debug\net10.0\CareFlow.Domain.deps.json
+C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Domain\bin\Debug\net10.0\CareFlow.Domain.dll
+C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Domain\bin\Debug\net10.0\CareFlow.Domain.pdb
+C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Domain\obj\Debug\net10.0\CareFlow.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Domain\obj\Debug\net10.0\CareFlow.Domain.AssemblyInfoInputs.cache
+C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Domain\obj\Debug\net10.0\CareFlow.Domain.AssemblyInfo.cs
+C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Domain\obj\Debug\net10.0\CareFlow.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Domain\obj\Debug\net10.0\CareFlow.Domain.dll
+C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Domain\obj\Debug\net10.0\refint\CareFlow.Domain.dll
+C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Domain\obj\Debug\net10.0\CareFlow.Domain.pdb
+C:\Users\Kamil\OneDrive\Desktop\KAMIL FILES\3rd Yr\1ST SEM\DESKTOP DEV\PT4\CareFlow.Domain\obj\Debug\net10.0\ref\CareFlow.Domain.dll

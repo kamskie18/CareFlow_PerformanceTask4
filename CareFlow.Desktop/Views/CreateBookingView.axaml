@@ -1,0 +1,62 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CareFlow.Application.ViewModels"
+             x:Class="CareFlow.Desktop.Views.CreateBookingView"
+             x:DataType="vm:CreateBookingViewModel">
+
+    <ScrollViewer>
+        <StackPanel Margin="16" Spacing="16">
+
+            <!-- Patient Selection -->
+            <TextBlock Text="Patient" FontWeight="SemiBold" FontSize="14"/>
+            <ComboBox ItemsSource="{Binding Patients}"
+                      SelectedItem="{Binding SelectedPatient}"
+                      PlaceholderText="Select a patient..."
+                      MinWidth="300">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding FullName}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <!-- Date Selection -->
+            <TextBlock Text="Booking Date" FontWeight="SemiBold" FontSize="14"/>
+            <DatePicker SelectedDate="{Binding SelectedDate}" MinWidth="300"/>
+
+            <!-- Service Selection -->
+            <TextBlock Text="Diagnostic Services (select 1 to 3)" FontWeight="SemiBold" FontSize="14"/>
+            <ItemsControl ItemsSource="{Binding SelectableServices}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox IsChecked="{Binding IsSelected}"
+                                  Content="{Binding DisplayText}"
+                                  Margin="0,4"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- Submit -->
+            <Button Content="Confirm Booking"
+                    Command="{Binding SubmitBookingCommand}"
+                    HorizontalAlignment="Left"
+                    Padding="24,8"
+                    FontWeight="SemiBold"/>
+
+            <!-- Status Message -->
+            <Border IsVisible="{Binding StatusMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                    Padding="12"
+                    CornerRadius="4"
+                    BorderThickness="1">
+                <Border.Styles>
+                    <Style Selector="Border">
+                        <Setter Property="Background" Value="#FFF3CD"/>
+                        <Setter Property="BorderBrush" Value="#FFC107"/>
+                    </Style>
+                </Border.Styles>
+                <TextBlock Text="{Binding StatusMessage}" TextWrapping="Wrap"/>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

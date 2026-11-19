@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="CareFlow.Application/CareFlow.Application.csproj" />
+  <Project Path="CareFlow.Desktop/CareFlow.Desktop.csproj" />
+  <Project Path="CareFlow.Domain/CareFlow.Domain.csproj" />
+  <Project Path="CareFlow.Infrastructure/CareFlow.Infrastructure.csproj" />
+  <Project Path="CareFlow.Tests/CareFlow.Tests.csproj" />
+</Solution>

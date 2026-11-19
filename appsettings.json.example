@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Port=5432;Database=careflow_db;Username=postgres;Password=YOUR_POSTGRES_PASSWORD"
+  }
+}

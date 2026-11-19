@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CareFlow.Application.ViewModels"
+             xmlns:dto="using:CareFlow.Application.DTOs"
+             x:Class="CareFlow.Desktop.Views.AvailabilityView"
+             x:DataType="vm:AvailabilityViewModel">
+
+    <DockPanel Margin="16">
+
+        <!-- Date Picker -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="12" Margin="0,0,0,12">
+            <TextBlock Text="Select Date:" VerticalAlignment="Center" FontWeight="SemiBold"/>
+            <DatePicker SelectedDate="{Binding SelectedDate}" MinWidth="200"/>
+            <Button Content="Refresh" Command="{Binding LoadAvailabilityCommand}"/>
+        </StackPanel>
+
+        <!-- Header Row -->
+        <Grid DockPanel.Dock="Top" ColumnDefinitions="*,120,100,100" Margin="0,0,0,4">
+            <TextBlock Grid.Column="0" Text="Service Name" FontWeight="Bold"/>
+            <TextBlock Grid.Column="1" Text="Daily Capacity" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="2" Text="Booked" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="3" Text="Remaining" FontWeight="Bold" HorizontalAlignment="Center"/>
+        </Grid>
+
+        <Separator DockPanel.Dock="Top" Margin="0,0,0,4"/>
+
+        <!-- Rows -->
+        <ListBox ItemsSource="{Binding Services}" Background="Transparent">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="dto:ServiceAvailabilityDto">
+                    <Grid ColumnDefinitions="*,120,100,100" Margin="0,2">
+                        <TextBlock Grid.Column="0" Text="{Binding ServiceName}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding DailyCapacity}" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="2" Text="{Binding BookedCount}" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="3" Text="{Binding Remaining}" HorizontalAlignment="Center"
+                                   FontWeight="SemiBold"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </DockPanel>
+</UserControl>
