@@ -12,6 +12,18 @@
         WindowStartupLocation="CenterScreen"
         Background="#F7FAFC">
 
+    <Window.DataTemplates>
+        <DataTemplate DataType="{x:Type vm:AvailabilityViewModel}">
+            <views:AvailabilityView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CreateBookingViewModel}">
+            <views:CreateBookingView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:BookingListViewModel}">
+            <views:BookingListView />
+        </DataTemplate>
+    </Window.DataTemplates>
+
     <Grid ColumnDefinitions="240,*">
 
         <!-- Sidebar Navigation -->
@@ -35,8 +47,7 @@
                 <!-- Navigation Buttons -->
                 <StackPanel Spacing="8" Margin="14,12">
                     <Button Content="Service Availability"
-                            Command="{Binding SelectTabCommand}"
-                            CommandParameter="0"
+                            Command="{Binding ShowAvailabilityCommand}"
                             HorizontalAlignment="Stretch"
                             HorizontalContentAlignment="Left"
                             Padding="14,10"
@@ -46,8 +57,7 @@
                             FontWeight="SemiBold"/>
 
                     <Button Content="Create Booking"
-                            Command="{Binding SelectTabCommand}"
-                            CommandParameter="1"
+                            Command="{Binding ShowCreateBookingCommand}"
                             HorizontalAlignment="Stretch"
                             HorizontalContentAlignment="Left"
                             Padding="14,10"
@@ -57,8 +67,7 @@
                             FontWeight="SemiBold"/>
 
                     <Button Content="Confirmed Bookings"
-                            Command="{Binding SelectTabCommand}"
-                            CommandParameter="2"
+                            Command="{Binding ShowBookingListCommand}"
                             HorizontalAlignment="Stretch"
                             HorizontalContentAlignment="Left"
                             Padding="14,10"
@@ -73,11 +82,7 @@
 
         <!-- Main Body Area -->
         <Border Grid.Column="1" Padding="24" Background="#FFFFFF">
-            <Carousel SelectedIndex="{Binding SelectedTabIndex}">
-                <views:AvailabilityView DataContext="{Binding Availability}"/>
-                <views:CreateBookingView DataContext="{Binding CreateBooking}"/>
-                <views:BookingListView DataContext="{Binding BookingList}"/>
-            </Carousel>
+            <ContentControl Content="{Binding CurrentView}" />
         </Border>
 
     </Grid>

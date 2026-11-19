@@ -10,13 +10,7 @@ public partial class MainViewModel : ObservableObject
     public BookingListViewModel BookingList { get; }
 
     [ObservableProperty]
-    private int _selectedTabIndex;
-
-    [RelayCommand]
-    public void SelectTab(int index)
-    {
-        SelectedTabIndex = index;
-    }
+    private ObservableObject _currentView;
 
     public MainViewModel(
         AvailabilityViewModel availability,
@@ -26,5 +20,29 @@ public partial class MainViewModel : ObservableObject
         Availability = availability;
         CreateBooking = createBooking;
         BookingList = bookingList;
+
+        _currentView = Availability;
+        _ = Availability.LoadAvailabilityAsync();
+    }
+
+    [RelayCommand]
+    public async Task ShowAvailabilityAsync()
+    {
+        CurrentView = Availability;
+        await Availability.LoadAvailabilityAsync();
+    }
+
+    [RelayCommand]
+    public async Task ShowCreateBookingAsync()
+    {
+        CurrentView = CreateBooking;
+        await CreateBooking.LoadDataAsync();
+    }
+
+    [RelayCommand]
+    public async Task ShowBookingListAsync()
+    {
+        CurrentView = BookingList;
+        await BookingList.LoadBookingsAsync();
     }
 }
