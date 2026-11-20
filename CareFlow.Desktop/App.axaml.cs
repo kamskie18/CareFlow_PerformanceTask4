@@ -24,22 +24,20 @@ public partial class App : Avalonia.Application
     {
         var services = new ServiceCollection();
 
-        // --- Database ---
+        // --- Database (Pooled or standard) ---
         services.AddDbContext<CareFlowDbContext>(options =>
             options.UseNpgsql(
                 "Host=localhost;Database=careflow_db;Username=postgres;Password=password"));
 
-        // --- Repository ---
-        services.AddScoped<IBookingRepository, BookingRepository>();
+        // --- Repository & Service as Transient/Scoped ---
+        services.AddTransient<IBookingRepository, BookingRepository>();
+        services.AddTransient<AppBookingService>();
 
-        // --- Application Service ---
-        services.AddScoped<AppBookingService>();
-
-        // --- ViewModels ---
-        services.AddTransient<AvailabilityViewModel>();
-        services.AddTransient<CreateBookingViewModel>();
-        services.AddTransient<BookingListViewModel>();
-        services.AddTransient<MainViewModel>();
+        // --- ViewModels (Singletons so state and views remain stable and never recreate on UI thread) ---
+        services.AddSingleton<AvailabilityViewModel>();
+        services.AddSingleton<CreateBookingViewModel>();
+        services.AddSingleton<BookingListViewModel>();
+        services.AddSingleton<MainViewModel>();
 
         Services = services.BuildServiceProvider();
 

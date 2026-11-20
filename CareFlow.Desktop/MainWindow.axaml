@@ -12,18 +12,6 @@
         WindowStartupLocation="CenterScreen"
         Background="#F7FAFC">
 
-    <Window.DataTemplates>
-        <DataTemplate DataType="{x:Type vm:AvailabilityViewModel}">
-            <views:AvailabilityView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:CreateBookingViewModel}">
-            <views:CreateBookingView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type vm:BookingListViewModel}">
-            <views:BookingListView />
-        </DataTemplate>
-    </Window.DataTemplates>
-
     <Grid ColumnDefinitions="240,*">
 
         <!-- Sidebar Navigation -->
@@ -80,9 +68,28 @@
             </DockPanel>
         </Border>
 
-        <!-- Main Body Area -->
+        <!-- Main Body Area with TabControl (Native, rock-solid, zero crash) -->
         <Border Grid.Column="1" Padding="24" Background="#FFFFFF">
-            <ContentControl Content="{Binding CurrentView}" />
+            <TabControl SelectedIndex="{Binding SelectedViewIndex}">
+                <TabControl.Styles>
+                    <!-- Hide top tab headers because sidebar buttons control the tab -->
+                    <Style Selector="TabControl /template/ ItemsPresenter#PART_ItemsPresenter">
+                        <Setter Property="IsVisible" Value="False"/>
+                    </Style>
+                </TabControl.Styles>
+
+                <TabItem>
+                    <views:AvailabilityView DataContext="{Binding Availability}"/>
+                </TabItem>
+
+                <TabItem>
+                    <views:CreateBookingView DataContext="{Binding CreateBooking}"/>
+                </TabItem>
+
+                <TabItem>
+                    <views:BookingListView DataContext="{Binding BookingList}"/>
+                </TabItem>
+            </TabControl>
         </Border>
 
     </Grid>

@@ -8,13 +8,4 @@ public partial class BookingListView : UserControl
     {
         InitializeComponent();
     }
-
-    protected override async void OnAttachedToVisualTree(Avalonia.VisualTreeAttachmentEventArgs e)
-    {
-        base.OnAttachedToVisualTree(e);
-        if (DataContext is CareFlow.Application.ViewModels.BookingListViewModel vm)
-        {
-            await vm.LoadBookingsCommand.ExecuteAsync(null);
-        }
-    }
 }
