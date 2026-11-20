@@ -10,7 +10,7 @@
             <!-- Title Header -->
             <StackPanel Spacing="4">
                 <TextBlock Text="New Diagnostic Booking" FontSize="20" FontWeight="Bold" Foreground="#2D3748"/>
-                <TextBlock Text="Select a patient, booking date, and 1 to 3 diagnostic services." FontSize="12" Foreground="#718096"/>
+                <TextBlock Text="Select a patient, booking date, and 1 to 3 diagnostic services." FontSize="12" Foreground="#4A5568"/>
             </StackPanel>
 
             <!-- Main Form Card -->
@@ -26,7 +26,7 @@
                                   HorizontalAlignment="Stretch">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding FullName}"/>
+                                    <TextBlock Text="{Binding FullName}" Foreground="#2D3748"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
@@ -48,6 +48,7 @@
                                         <Border Padding="4,6" Margin="0,2">
                                             <CheckBox IsChecked="{Binding IsSelected}"
                                                       Content="{Binding DisplayText}"
+                                                      Foreground="#2D3748"
                                                       FontSize="13"/>
                                         </Border>
                                     </DataTemplate>
@@ -75,6 +76,7 @@
                             CornerRadius="6"
                             Padding="14,10">
                         <TextBlock Text="{Binding StatusMessage}"
+                                   Foreground="#2D3748"
                                    FontWeight="SemiBold"
                                    TextWrapping="Wrap"/>
                     </Border>

@@ -11,7 +11,7 @@
         <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,16">
             <StackPanel Grid.Column="0" Spacing="4">
                 <TextBlock Text="Diagnostic Service Availability" FontSize="20" FontWeight="Bold" Foreground="#2D3748"/>
-                <TextBlock Text="Real-time capacity and remaining slots calculated from database records." FontSize="12" Foreground="#718096"/>
+                <TextBlock Text="Real-time capacity and remaining slots calculated from database records." FontSize="12" Foreground="#4A5568"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
@@ -46,10 +46,10 @@
                             <Grid ColumnDefinitions="*,130,120,120">
                                 <StackPanel Grid.Column="0" VerticalAlignment="Center" Spacing="2">
                                     <TextBlock Text="{Binding ServiceName}" FontWeight="SemiBold" FontSize="13" Foreground="#2D3748"/>
-                                    <TextBlock Text="{Binding DailyCapacity, StringFormat='Max: {0} requests/day'}" FontSize="11" Foreground="#A0AEC0"/>
+                                    <TextBlock Text="{Binding DailyCapacity, StringFormat='Max: {0} requests/day'}" FontSize="11" Foreground="#4A5568"/>
                                 </StackPanel>
                                 <TextBlock Grid.Column="1" Text="{Binding DailyCapacity}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#4A5568"/>
-                                <TextBlock Grid.Column="2" Text="{Binding BookedCount}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#718096" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="2" Text="{Binding BookedCount}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#4A5568" FontWeight="SemiBold"/>
                                 <Border Grid.Column="3" Background="#EBF8FF" CornerRadius="4" Padding="8,4" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <TextBlock Text="{Binding Remaining}"
                                                FontWeight="Bold"

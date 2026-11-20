@@ -11,7 +11,7 @@
         <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,16">
             <StackPanel Grid.Column="0" Spacing="4">
                 <TextBlock Text="Confirmed Diagnostic Bookings" FontSize="20" FontWeight="Bold" Foreground="#2D3748"/>
-                <TextBlock Text="Retrieve and inspect persisted patient bookings and allocated services." FontSize="12" Foreground="#718096"/>
+                <TextBlock Text="Retrieve and inspect persisted patient bookings and allocated services." FontSize="12" Foreground="#4A5568"/>
             </StackPanel>
 
             <Button Grid.Column="1"
@@ -48,7 +48,7 @@
                                             <TextBlock Text="{Binding BookingId, StringFormat='#{0}'}" Foreground="White" FontSize="11" FontWeight="Bold"/>
                                         </Border>
                                         <TextBlock Grid.Column="1" Text="{Binding PatientName}" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="#2D3748"/>
-                                        <TextBlock Grid.Column="2" Text="{Binding BookingDate, StringFormat='{}{0:yyyy-MM-dd}'}" VerticalAlignment="Center" Foreground="#718096" FontSize="12"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding BookingDate, StringFormat='{}{0:yyyy-MM-dd}'}" VerticalAlignment="Center" Foreground="#4A5568" FontSize="12"/>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
@@ -69,21 +69,21 @@
 
                         <Border Background="White" CornerRadius="6" Padding="12" BorderBrush="#E2E8F0" BorderThickness="1">
                             <StackPanel Spacing="6">
-                                <TextBlock Text="Patient" FontSize="11" Foreground="#718096" FontWeight="SemiBold"/>
+                                <TextBlock Text="Patient" FontSize="11" Foreground="#4A5568" FontWeight="SemiBold"/>
                                 <TextBlock Text="{Binding SelectedBooking.PatientName}" FontSize="14" FontWeight="Bold" Foreground="#2D3748"/>
                             </StackPanel>
                         </Border>
 
                         <Border Background="White" CornerRadius="6" Padding="12" BorderBrush="#E2E8F0" BorderThickness="1">
                             <StackPanel Spacing="6">
-                                <TextBlock Text="Scheduled Date" FontSize="11" Foreground="#718096" FontWeight="SemiBold"/>
+                                <TextBlock Text="Scheduled Date" FontSize="11" Foreground="#4A5568" FontWeight="SemiBold"/>
                                 <TextBlock Text="{Binding SelectedBooking.BookingDate, StringFormat='{}{0:MMMM dd, yyyy}'}" FontSize="13" FontWeight="SemiBold" Foreground="#2D3748"/>
                             </StackPanel>
                         </Border>
 
                         <Border Background="White" CornerRadius="6" Padding="12" BorderBrush="#E2E8F0" BorderThickness="1">
                             <StackPanel Spacing="6">
-                                <TextBlock Text="Diagnostic Services Allocated" FontSize="11" Foreground="#718096" FontWeight="SemiBold"/>
+                                <TextBlock Text="Diagnostic Services Allocated" FontSize="11" Foreground="#4A5568" FontWeight="SemiBold"/>
                                 <ItemsControl ItemsSource="{Binding SelectedBooking.Services}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
@@ -100,7 +100,7 @@
 
                     <TextBlock Text="Select a confirmed booking from the list on the left to inspect its details."
                                IsVisible="{Binding SelectedBooking, Converter={x:Static ObjectConverters.IsNull}}"
-                               Foreground="#A0AEC0"
+                               Foreground="#4A5568"
                                FontSize="12"
                                TextWrapping="Wrap"/>
                 </StackPanel>
